@@ -18,9 +18,4 @@ public class UsuariosController {
         return "usuarios";
     }
 
-    @PostMapping("/add")
-    public String addUsuario(){
-        return "O usuário foi adicionado";
-    }
-
 }
