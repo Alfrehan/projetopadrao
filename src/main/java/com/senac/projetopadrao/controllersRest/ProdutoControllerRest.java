@@ -20,6 +20,7 @@ public class ProdutoControllerRest {
         Produto produto = new Produto();
         produto.setNomeProduto("Fones");
         produto.setPreco("199");
+        produtoRepository.save(produto);
 
         return "Produto adicionado";
 
