@@ -18,8 +18,8 @@ public class ProdutoControllerRest {
     public String addProduto(){
 
         Produto produto = new Produto();
-        produto.setNomeProduto("Fones");
-        produto.setPreco("199");
+        produto.setNomeProduto("Caixa de Som BT");
+        produto.setPreco("499");
         produtoRepository.save(produto);
 
         return "Produto adicionado";
