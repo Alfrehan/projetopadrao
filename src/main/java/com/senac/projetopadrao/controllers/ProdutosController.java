@@ -5,6 +5,7 @@ import com.senac.projetopadrao.model.Produto;
 import com.senac.projetopadrao.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +32,18 @@ public class ProdutosController {
         mv.addObject("produtos", produtos);
 
         return mv;
+    }
 
+    @GetMapping("/add")
+    public String addProdutoPage (Produto produto){
+        return "produtos_add";
+    }
+
+    @PostMapping("/add")
+    public String addProduto (@Validated Produto produto){
+
+        produtoRepository.save(produto);
+
+        return "redirect:/produtos/";
     }
 }
