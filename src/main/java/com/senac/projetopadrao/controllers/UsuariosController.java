@@ -19,17 +19,16 @@ public class UsuariosController {
 
     @Autowired
     UsuarioRepository usuarioRepository;
-    private Object FindAll;
 
     @GetMapping("/")
     public ModelAndView listarUsuarios(){
         ModelAndView mv = new ModelAndView( "usuarios");
 
-        ArrayList<Usuario> usuarios = new ArrayList<>();
+        ArrayList<Usuario> usuarios;
 
         usuarios = (ArrayList<Usuario>) usuarioRepository.findAll();
 
-        mv.addObject("usuarios",usuarios);
+        mv.addObject("usuariosLista",usuarios);
 
         return mv;
     }
@@ -65,6 +64,16 @@ public class UsuariosController {
         usuario.setId(id);
 
         usuarioRepository.save(usuario);
+
+        return "redirect:/usuarios/";
+    }
+
+    @GetMapping("/deletar/{id}")
+    public String deletar(@PathVariable(value = "id") Long id){
+
+        Usuario usuario = usuarioRepository.findUsuarioById(id);
+
+        usuarioRepository.delete(usuario);
 
         return "redirect:/usuarios/";
     }
